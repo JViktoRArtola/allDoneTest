@@ -9,6 +9,7 @@ import {
   Image,
 } from 'react-native';
 import {validEmail, validURL} from '../js/validations';
+import Delete from './Delete';
 import ButtonPanel from './ButtonPanel';
 import ico from '../assets/png/tiny_logo.png';
 
@@ -16,6 +17,7 @@ export default function Input({list, setList, setFlag, item}) {
   const [txt, setTxt] = useState(item.toString().replace(/,/g, ' '));
   const [contentSize, setContentSize] = useState({width: '99%', height: 0});
   const [modal, setModal] = useState(true);
+  const [remove, setRemove] = useState(false);
   const [width, setWidth] = useState(null);
   const observer = (value) => {
     if (value.startsWith('#') && value.length > 1) {
@@ -92,8 +94,20 @@ export default function Input({list, setList, setFlag, item}) {
             </View>
             <View style={styles.allButtons}>
               <ButtonPanel width={width} />
+              {remove && (
+                <Delete
+                  remove={remove}
+                  setRemove={setRemove}
+                  deleteTask={deleteTask}
+                  item={item}
+                />
+              )}
               <View style={styles.actions}>
-                <TouchableOpacity style={styles.cancelButton}>
+                <TouchableOpacity
+                  style={styles.cancelButton}
+                  onPress={() => {
+                    setRemove(true);
+                  }}>
                   <Text style={styles.cancelText}>❌</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
