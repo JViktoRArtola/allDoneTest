@@ -33,33 +33,34 @@ export default function List({list, setList, item}) {
           onPress={() => setFlag(!flag)}>
           <Text style={styles.check}>✅ </Text>
           <Text>
-            {item.map((i, index) => (
-              <View key={index}>
-                <Text style={[observer(i), styles.responsive]}>
-                  {validURL(i) ? (
-                    <Text
-                      onPress={() => {
-                        Platform.OS === 'web'
-                          ? window.open(i, '_blank')
-                          : Linking.openURL(i);
-                      }}>
-                      🔗 Link
-                    </Text>
-                  ) : validEmail(i) ? (
-                    <Text
-                      accessibilityHint={'Ya'}
-                      title={'Ya'}
-                      onPress={() =>
-                        Linking.openURL(`mailto:${i}?subject=Change Here!!!`)
-                      }>
-                      📧 Mail
-                    </Text>
-                  ) : (
-                    i + ' '
-                  )}
-                </Text>
-              </View>
-            ))}
+            {item &&
+              item.map((i, index) => (
+                <View key={index}>
+                  <Text style={[observer(i), styles.responsive]}>
+                    {validURL(i) ? (
+                      <Text
+                        onPress={() => {
+                          Platform.OS === 'web'
+                            ? window.open(i, '_blank')
+                            : Linking.openURL(i);
+                        }}>
+                        🔗 Link
+                      </Text>
+                    ) : validEmail(i) ? (
+                      <Text
+                        accessibilityHint={'Ya'}
+                        title={'Ya'}
+                        onPress={() =>
+                          Linking.openURL(`mailto:${i}?subject=Change Here!!!`)
+                        }>
+                        📧 Mail
+                      </Text>
+                    ) : (
+                      i + ' '
+                    )}
+                  </Text>
+                </View>
+              ))}
           </Text>
         </TouchableOpacity>
       ) : (
@@ -71,9 +72,7 @@ export default function List({list, setList, item}) {
 
 const styles = StyleSheet.create({
   touchable: {
-    // overflow: 'hidden',
     flexDirection: 'row',
-    // marginTop: 10,
     width: '90%',
     marginLeft: 4,
     marginBottom: 15,
