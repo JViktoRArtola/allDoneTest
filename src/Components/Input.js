@@ -9,6 +9,7 @@ import {
   Platform,
 } from 'react-native';
 import {validEmail, validURL} from '../js/validations';
+import ButtonPanel from './ButtonPanel';
 
 export default function Input({list, setList}) {
   const [txt, setTxt] = useState('');
@@ -90,6 +91,7 @@ export default function Input({list, setList}) {
             </View>
           </View>
           <View style={styles.allButtons}>
+            <ButtonPanel width={width} />
             <View style={styles.actions}>
               {width > 98 && (
                 <TouchableOpacity
