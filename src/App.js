@@ -7,7 +7,8 @@
  */
 
 import React from 'react';
-import {SafeAreaView, ScrollView, Text, StatusBar} from 'react-native';
+import {SafeAreaView, ScrollView, StatusBar} from 'react-native';
+import Header from './Components/Header';
 
 const App: () => React$Node = () => {
   return (
@@ -15,7 +16,7 @@ const App: () => React$Node = () => {
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
         <ScrollView>
-          <Text>Hello World</Text>
+          <Header />
         </ScrollView>
       </SafeAreaView>
     </>
