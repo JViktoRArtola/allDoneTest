@@ -1,17 +1,25 @@
-import React from 'react';
-import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import React, {useState} from 'react';
+import {Text, View, StyleSheet, TouchableOpacity, Platform} from 'react-native';
 import {navsItems} from '../data';
+import Accordion from './Accordion';
 
 export default function Header() {
+  const [width, setWidth] = useState(null);
   return (
-    <View style={styles.header}>
-      <View style={styles.navBar}>
-        {navsItems.map((item, index) => (
-          <TouchableOpacity key={index} style={styles.navItem}>
-            <Text style={styles.text}>{item}</Text>
-          </TouchableOpacity>
-        ))}
-      </View>
+    <View
+      style={styles.header}
+      onLayout={(layout) => setWidth(layout.nativeEvent.layout.width)}>
+      {Platform.OS === 'android' || (width && width < 500) ? (
+        <Accordion data={navsItems} />
+      ) : (
+        <View style={styles.navBar}>
+          {navsItems.map((item, index) => (
+            <TouchableOpacity style={styles.navItem} key={index}>
+              <Text style={styles.text}>{item}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+      )}
     </View>
   );
 }
