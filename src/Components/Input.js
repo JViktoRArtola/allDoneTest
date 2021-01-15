@@ -7,9 +7,11 @@ import {
   StyleSheet,
   Pressable,
   Platform,
+  Image,
 } from 'react-native';
 import {validEmail, validURL} from '../js/validations';
 import ButtonPanel from './ButtonPanel';
+import ico from '../assets/png/tiny_logo.png';
 
 export default function Input({list, setList}) {
   const [txt, setTxt] = useState('');
@@ -65,6 +67,9 @@ export default function Input({list, setList}) {
               <Text style={styles.plus}>➕</Text>
             </View>
           )}
+          <TouchableOpacity disabled={!txt} style={styles.avatarButton}>
+            <Image style={!txt ? styles.avatarD : styles.avatar} source={ico} />
+          </TouchableOpacity>
           <TextInput
             autoCorrect={false}
             autoFocus
@@ -233,8 +238,8 @@ const styles = StyleSheet.create({
     fontWeight: '400',
   },
   button: {
-    marginTop: 4,
-    marginLeft: 4,
+    marginTop: 5,
+    marginLeft: 5,
     borderWidth: 2.5,
     borderColor: '#007FFF',
     borderRadius: 3,
