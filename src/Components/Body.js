@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, Platform} from 'react-native';
 import Current from './Current';
+import Tasks from './Tasks';
 
 function Body() {
   const [width, setWidth] = useState(501);
@@ -14,6 +15,7 @@ function Body() {
         setWidth(layout.nativeEvent.layout.width);
       }}>
       <Current />
+      <Tasks />
     </View>
   );
 }
