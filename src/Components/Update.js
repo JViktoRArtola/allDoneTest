@@ -155,6 +155,7 @@ const styles = StyleSheet.create({
     elevation: 3,
     height: Platform.OS === 'android' ? 150 : null,
     marginBottom: 20,
+    marginTop: -3,
   },
   pressable: {
     flexDirection: 'row',
@@ -315,7 +316,7 @@ const styles = StyleSheet.create({
   check: {
     marginLeft: 4,
     marginRight: 17,
-    marginTop: 4,
+    marginTop: 5,
     position: 'absolute',
   },
   avatarButton: {
