@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Text, View, StyleSheet, TouchableOpacity, Platform} from 'react-native';
-import {navsItems} from '../data';
+import {navsItems} from '../js/data';
 import Accordion from './Accordion';
 
 export default function Header() {
