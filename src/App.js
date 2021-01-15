@@ -9,6 +9,7 @@
 import React from 'react';
 import {SafeAreaView, ScrollView, StatusBar} from 'react-native';
 import Header from './Components/Header';
+import Body from './Components/Body';
 
 const App: () => React$Node = () => {
   return (
@@ -17,6 +18,7 @@ const App: () => React$Node = () => {
       <SafeAreaView>
         <ScrollView>
           <Header />
+          <Body />
         </ScrollView>
       </SafeAreaView>
     </>
