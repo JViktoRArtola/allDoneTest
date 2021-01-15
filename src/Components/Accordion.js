@@ -1,29 +1,18 @@
 import React, {useState} from 'react';
-import {
-  View,
-  TouchableOpacity,
-  Text,
-  StyleSheet,
-  LayoutAnimation,
-} from 'react-native';
+import {View, TouchableOpacity, Text, StyleSheet} from 'react-native';
 
 export default function Accordion({data}) {
   const [expanded, setExpanded] = useState(false);
-  const toggleExpand = () => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-    setExpanded(!expanded);
-  };
   return (
     <View>
-      <TouchableOpacity style={styles.button} onPress={() => toggleExpand()}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => setExpanded(!expanded)}>
         <Text style={styles.title}>{!expanded ? 'MENU' : 'X'}</Text>
       </TouchableOpacity>
       {expanded &&
         data.map((item, index) => (
-          <TouchableOpacity
-            key={index}
-            style={styles.child}
-            onPress={() => console.log(index)}>
+          <TouchableOpacity key={index} style={styles.child}>
             <Text style={styles.textChild}>{item}</Text>
           </TouchableOpacity>
         ))}
