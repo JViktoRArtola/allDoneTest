@@ -52,13 +52,12 @@ export default function Input({list, setList, setFlag, item}) {
         onLayout={(layout) => {
           setWidth(layout.nativeEvent.layout.width);
         }}>
-        {!modal && (
+        {!modal ? (
           <TouchableOpacity
             style={styles.pressable}
             onPress={() => setModal(true)}
           />
-        )}
-        {modal && (
+        ) : (
           <View style={styles.box}>
             {Platform.OS === 'web' && <Text style={styles.check}>✅ </Text>}
             <TouchableOpacity disabled={!txt} style={styles.avatarButton}>
@@ -138,11 +137,7 @@ export default function Input({list, setList, setFlag, item}) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    // marginBottom: 30,
-  },
   box: {
-    // marginTop: 20,
     backgroundColor: '#ffffff',
     borderWidth: 1,
     borderStyle: 'solid',
