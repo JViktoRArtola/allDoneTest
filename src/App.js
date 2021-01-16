@@ -1,6 +1,6 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
+ * Sample allDone Test
+ * https://alldonetest.herokuapp.com/
  *
  * @format
  * @flow strict-local

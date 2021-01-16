@@ -42,7 +42,7 @@ export default function Input({list, setList}) {
   }
   return (
     <View style={styles.container}>
-      {!modal && (
+      {!modal ? (
         <Pressable
           style={styles.touchable}
           onPress={() => {
@@ -51,12 +51,9 @@ export default function Input({list, setList}) {
           <View style={styles.button}>
             <Text style={styles.plus}>➕</Text>
           </View>
-          {!modal && !txt && (
-            <Text style={styles.text2}>Type to add new task</Text>
-          )}
+          {!txt && <Text style={styles.text2}>Type to add new task</Text>}
         </Pressable>
-      )}
-      {modal && (
+      ) : (
         <View
           style={styles.box}
           onLayout={(layout) => {
