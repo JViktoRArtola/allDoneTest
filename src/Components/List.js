@@ -10,7 +10,7 @@ import {
 import {validEmail, validURL} from '../js/validations';
 import Update from './Update';
 
-export default function List({list, setList, item}) {
+export default function List({item}) {
   const [flag, setFlag] = useState(false);
   const observer = (value) => {
     if (value.startsWith('#')) {
@@ -33,38 +33,37 @@ export default function List({list, setList, item}) {
           onPress={() => setFlag(!flag)}>
           <Text style={styles.check}>✅ </Text>
           <Text>
-            {item &&
-              item.map((i, index) => (
-                <View key={index}>
-                  <Text style={[observer(i), styles.responsive]}>
-                    {validURL(i) ? (
-                      <Text
-                        onPress={() => {
-                          Platform.OS === 'web'
-                            ? window.open(i, '_blank')
-                            : Linking.openURL(i);
-                        }}>
-                        🔗 Link
-                      </Text>
-                    ) : validEmail(i) ? (
-                      <Text
-                        accessibilityHint={'Ya'}
-                        title={'Ya'}
-                        onPress={() =>
-                          Linking.openURL(`mailto:${i}?subject=Change Here!!!`)
-                        }>
-                        📧 Mail
-                      </Text>
-                    ) : (
-                      i + ' '
-                    )}
-                  </Text>
-                </View>
-              ))}
+            {item.task.map((i, index) => (
+              <View key={index}>
+                <Text style={[observer(i), styles.responsive]}>
+                  {validURL(i) ? (
+                    <Text
+                      onPress={() => {
+                        Platform.OS === 'web'
+                          ? window.open(i, '_blank')
+                          : Linking.openURL(i);
+                      }}>
+                      🔗 Link
+                    </Text>
+                  ) : validEmail(i) ? (
+                    <Text
+                      accessibilityHint={'Ya'}
+                      title={'Ya'}
+                      onPress={() =>
+                        Linking.openURL(`mailto:${i}?subject=Change Here!!!`)
+                      }>
+                      📧 Mail
+                    </Text>
+                  ) : (
+                    i + ' '
+                  )}
+                </Text>
+              </View>
+            ))}
           </Text>
         </TouchableOpacity>
       ) : (
-        <Update list={list} setList={setList} setFlag={setFlag} item={item} />
+        <Update item={item} setFlag={setFlag} />
       )}
     </>
   );

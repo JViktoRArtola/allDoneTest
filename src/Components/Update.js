@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {
   TextInput,
   TouchableOpacity,
@@ -12,9 +12,12 @@ import {validEmail, validURL} from '../js/validations';
 import Delete from './Delete';
 import ButtonPanel from './ButtonPanel';
 import ico from '../assets/png/tiny_logo.png';
+import taskContext from '../context/tasks/taskContext';
 
-export default function Input({list, setList, setFlag, item}) {
-  const [txt, setTxt] = useState(item.toString().replace(/,/g, ' '));
+export default function Update({item, setFlag}) {
+  const tasksContext = useContext(taskContext);
+  const {updateTask, deleteTask} = tasksContext;
+  const [txt, setTxt] = useState(item.task.toString().replace(/,/g, ' '));
   const [contentSize, setContentSize] = useState({width: '99%', height: 0});
   const [modal, setModal] = useState(true);
   const [remove, setRemove] = useState(false);
@@ -32,20 +35,21 @@ export default function Input({list, setList, setFlag, item}) {
       return styles.normal;
     }
   };
-  function updateContact(id) {
-    const elementsIndex = list.findIndex((element) => element === id);
-    let newArray = [...list];
-    newArray[elementsIndex] = txt.split(' ');
-    setList(newArray);
+  const reset = () => {
     setTxt('');
     setFlag(false);
-  }
-  function deleteTask(value) {
-    const newList = list.filter((i) => i !== value);
-    setList(newList);
-    setTxt('');
-    setFlag(false);
-  }
+  };
+  const onUpdateTask = (value) => {
+    if (value) {
+      value.task = txt.split(' ');
+      updateTask(value);
+      reset();
+    }
+  };
+  const onDeleteTask = (id) => {
+    deleteTask(id);
+    reset();
+  };
   return (
     <>
       <View
@@ -97,8 +101,8 @@ export default function Input({list, setList, setFlag, item}) {
                 <Delete
                   remove={remove}
                   setRemove={setRemove}
-                  deleteTask={deleteTask}
-                  item={item}
+                  deleteTask={onDeleteTask}
+                  id={item.id}
                 />
               )}
               <View style={styles.actions}>
@@ -122,7 +126,7 @@ export default function Input({list, setList, setFlag, item}) {
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.addButton}
-                  onPress={() => updateContact(item)}>
+                  onPress={() => onUpdateTask(item)}>
                   <Text style={styles.addText}>
                     {width > 1070 ? 'Save' : '💾'}
                   </Text>

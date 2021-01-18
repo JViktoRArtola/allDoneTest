@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {
   TextInput,
   TouchableOpacity,
@@ -12,8 +12,11 @@ import {
 import {validEmail, validURL} from '../js/validations';
 import ButtonPanel from './ButtonPanel';
 import ico from '../assets/png/tiny_logo.png';
+import taskContext from '../context/tasks/taskContext';
 
-export default function Input({list, setList}) {
+export default function Input() {
+  const tasksContext = useContext(taskContext);
+  const {postTask} = tasksContext;
   const [txt, setTxt] = useState('');
   const [contentSize, setContentSize] = useState({width: '99%', height: 0});
   const [modal, setModal] = useState(false);
@@ -31,15 +34,15 @@ export default function Input({list, setList}) {
       return styles.normal;
     }
   };
-  function save() {
+  const onAddTask = () => {
     if (txt) {
-      setList([txt.split(' '), ...list]);
+      postTask({task: txt.split(' ')});
       setTxt('');
     } else {
       setModal(false);
       setTxt('');
     }
-  }
+  };
   return (
     <View style={styles.container}>
       {!modal ? (
@@ -107,7 +110,9 @@ export default function Input({list, setList}) {
                   </Text>
                 </TouchableOpacity>
               )}
-              <TouchableOpacity style={styles.addButton} onPress={() => save()}>
+              <TouchableOpacity
+                style={styles.addButton}
+                onPress={() => onAddTask()}>
                 <Text style={styles.addText}>
                   {width > 1070 ? (txt ? 'Add' : 'Ok') : '➕'}
                 </Text>

@@ -1,15 +1,19 @@
-import React, {useState} from 'react';
-import {tasks} from '../js/data';
+import React, {useContext, useEffect} from 'react';
 import List from './List';
 import Input from './Input';
+import taskContext from '../context/tasks/taskContext';
 
 export default function Tasks() {
-  const [list, setList] = useState(tasks);
+  const tasksContext = useContext(taskContext);
+  const {tasks, getTasks} = tasksContext;
+  useEffect(() => {
+    getTasks();
+  }, []);
   return (
     <>
-      <Input list={list} setList={setList} />
-      {list.map((item, ind) => (
-        <List key={ind} item={item} list={list} setList={setList} />
+      <Input />
+      {tasks.map((item) => (
+        <List key={item.id} item={item} />
       ))}
     </>
   );

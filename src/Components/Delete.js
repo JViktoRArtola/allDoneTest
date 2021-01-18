@@ -2,7 +2,7 @@ import React from 'react';
 import {Modal, StyleSheet, View} from 'react-native';
 import {Text, TouchableOpacity} from 'react-native';
 
-function Delete({remove, setRemove, deleteTask, item}) {
+function Delete({remove, setRemove, deleteTask, id}) {
   return (
     <Modal visible={remove} transparent>
       <View style={styles.modal}>
@@ -19,7 +19,7 @@ function Delete({remove, setRemove, deleteTask, item}) {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.proceed}
-              onPress={() => deleteTask(item)}>
+              onPress={() => deleteTask(id)}>
               <Text style={styles.textP}>Proceed</Text>
             </TouchableOpacity>
           </View>
