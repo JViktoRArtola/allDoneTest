@@ -6,7 +6,7 @@
 
 ###  [🎁 Download APK 🎁](https://github.com/JViktoRArtola/allDoneTest/releases/download/alldonetest/alldonetest.apk)
 
-#### dev branch contains the perfect alternative to Redux
+### 📣 dev branch contains the perfect alternative to Redux
 
 ## Available Scripts
 
@@ -24,6 +24,6 @@ Opening Cypress<br>
 For more info, visit the [official docs](https://docs.cypress.io/guides/getting-started/installing-cypress.html#Continuous-integration)
 
 #### Watch End-to-End Tests with [Cypress](https://www.cypress.io/)
-##### [Add new Task](https://github.com/JViktoRArtola/allDoneTest/releases/download/alldonetest/Add_new_task_Test.webm)
-##### [Delete a Task](https://github.com/JViktoRArtola/allDoneTest/releases/download/alldonetest/Delete_task_Test.webm)
+##### [- Add new Task](https://github.com/JViktoRArtola/allDoneTest/releases/download/alldonetest/Add_new_task_Test.webm)
+##### [- Delete a Task](https://github.com/JViktoRArtola/allDoneTest/releases/download/alldonetest/Delete_task_Test.webm)
 
